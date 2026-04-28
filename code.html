@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Coin Flip Game</h1>
+    <p>Guess the outcome:</p>
+    <label><input type="radio" name="guess" value="heads" checked> Heads</label>
+    <label><input type="radio" name="guess" value="tails"> Tails</label>
+    <br><br>
+    <button onclick="flipCoin()">Flip</button>
+    <div id="result"></div>
+
+    <script>
+        function flipCoin() {
+            const radios = document.getElementsByName('guess');
+            let userGuess = '';
+            for (const radio of radios) {
+                if (radio.checked) {
+                    userGuess = radio.value;
+                    break;
+                }
+            }
+            const outcome = Math.random() < 0.5 ? 'heads' : 'tails';
+            let message = `Coin landed on <b>${outcome}</b>.<br>`;
+            if (userGuess === outcome) {
+                message += "You guessed right! 🎉";
+            } else {
+                message += "Sorry, try again!";
+            }
+            document.getElementById('result').innerHTML = message;
+        }
+    </script>
+</body>
+
+</html>
